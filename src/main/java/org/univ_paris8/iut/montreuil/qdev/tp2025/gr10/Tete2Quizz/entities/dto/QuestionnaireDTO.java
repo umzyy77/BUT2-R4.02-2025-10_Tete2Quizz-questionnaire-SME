@@ -1,4 +1,5 @@
 package org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.entities.dto;
+
 import java.util.List;
 
 public class QuestionnaireDTO {
@@ -16,10 +17,24 @@ public class QuestionnaireDTO {
         this.questions = questions;
     }
 
-    public int getId() { return id; }
-    public String getLangue() { return langue; }
-    public String getTitre() { return titre; }
-    public int getNombreQuestions() { return nombreQuestions; }
-    public List<QuestionDTO> getQuestions() { return questions; }
+    public int getId() {
+        return id;
+    }
+
+    public String getLangue() {
+        return langue;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public int getNombreQuestions() {
+        return nombreQuestions;
+    }
+
+    public List<QuestionDTO> getQuestions() {
+        return questions;
+    }
 }
 

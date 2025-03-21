@@ -1,6 +1,5 @@
 package org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.entities.dto;
 
-
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.enums.DifficulteEnum;
 
 public class QuestionDTO {
@@ -22,11 +21,31 @@ public class QuestionDTO {
         this.reference = reference;
     }
 
-    public int getIdQuestion() { return idQuestion; }
-    public String getLangue() { return langue; }
-    public String getLibelle() { return libelle; }
-    public String getReponse() { return reponse; }
-    public DifficulteEnum getDifficulte() { return difficulte; }
-    public String getExplication() { return explication; }
-    public String getReference() { return reference; }
+    public int getIdQuestion() {
+        return idQuestion;
+    }
+
+    public String getLangue() {
+        return langue;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public String getReponse() {
+        return reponse;
+    }
+
+    public DifficulteEnum getDifficulte() {
+        return difficulte;
+    }
+
+    public String getExplication() {
+        return explication;
+    }
+
+    public String getReference() {
+        return reference;
+    }
 }
