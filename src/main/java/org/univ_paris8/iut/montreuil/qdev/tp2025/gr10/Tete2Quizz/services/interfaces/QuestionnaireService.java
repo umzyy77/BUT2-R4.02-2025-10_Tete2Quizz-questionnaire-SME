@@ -7,5 +7,5 @@ import java.io.IOException;
 import java.util.List;
 
 public interface QuestionnaireService {
-    List<QuestionnaireDTO> fournirListeQuestionnaires() throws IOException, InvalidFileException, EmptyValueException, InvalidIdException, InvalidLangException, InvalidDifficultyException;
+    List<QuestionnaireDTO> fournirListeQuestionnaires(String file) throws IOException, InvalidFileException, EmptyValueException, InvalidIdException, InvalidLangException, InvalidDifficultyException;
 }
