@@ -8,7 +8,6 @@ import java.util.List;
 
 public class QuestionnaireDTO {
     private int id;
-    private String titre;
     private LangEnum langue;
     private int nombreQuestions;
     private List<QuestionDTO> questions;
@@ -20,12 +19,12 @@ public class QuestionnaireDTO {
         this.questions = new ArrayList<>();
     }
 
-    public LangEnum getLangue() {
-        return langue;
+    public int getId() {
+        return id;
     }
 
-    public String getTitre() {
-        return titre;
+    public LangEnum getLangue() {
+        return langue;
     }
 
     public int getNombreQuestions() {

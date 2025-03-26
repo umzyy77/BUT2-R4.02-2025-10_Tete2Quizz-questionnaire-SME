@@ -1,7 +1,6 @@
 package org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.entities.dto;
 
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.enums.DifficulteEnum;
-import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.enums.LangEnum;
 
 public class QuestionDTO {
     private int idQuestion;
