@@ -3,7 +3,10 @@ package org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.services;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.entities.dto.QuestionDTO;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.entities.dto.QuestionnaireDTO;
+import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.services.interfaces.QuestionnaireService;
+import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.enums.DifficulteEnum;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.enums.LangEnum;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.exceptions.load.*;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.services.mock.*;
@@ -13,23 +16,33 @@ import java.util.List;
 
 public class FournirListeQuestionnaireServiceTest {
 
+    QuestionnaireService service;
+
     @Test
     public void testChargementValide() throws Exception {
-        var service = new ChargementCSVValideMockImpl();
+        service = new ChargementCSVValideMockImpl();
         List<QuestionnaireDTO> liste = service.fournirListeQuestionnaires("questionnaireQuizz_V1.1.csv");
 
         assertNotNull(liste);
-        assertEquals(2, liste.size());
+        assertEquals(1, liste.size());
 
-        QuestionnaireDTO q1 = liste.get(0);
-        assertEquals(1, q1.getId());
-        assertEquals(LangEnum.FR, q1.getLangue());
-        assertEquals(0, q1.getNombreQuestions());  // Ou adapte si ton mock ajoute des questions
+        QuestionnaireDTO q = liste.get(0);
+        assertEquals(1, q.getId());
+        assertEquals(LangEnum.FR, q.getLangue());
+        assertEquals(2, q.getNombreQuestions());
+
+        QuestionDTO question1 = q.getQuestions().get(0);
+        assertEquals("Tee", question1.getReponse());
+        assertEquals(DifficulteEnum.SIMPLE, question1.getDifficulte());
+
+        QuestionDTO question2 = q.getQuestions().get(1);
+        assertEquals("Badminton", question2.getReponse());
+        assertEquals(DifficulteEnum.SIMPLE, question2.getDifficulte());
     }
 
     @Test
     public void testIOException() {
-        var service = new ChargementIOExceptionMockImpl();
+        service = new ChargementIOExceptionMockImpl();
         assertThrows(IOException.class, () ->
                 service.fournirListeQuestionnaires("questionnaireIOException.csv")
         );
@@ -37,7 +50,7 @@ public class FournirListeQuestionnaireServiceTest {
 
     @Test
     public void testInvalidFileException() {
-        var service = new ChargementInvalidFileMockImpl();
+        service = new ChargementInvalidFileMockImpl();
         assertThrows(InvalidFileException.class, () ->
                 service.fournirListeQuestionnaires("questionnaireInvalidFile.csv")
         );
@@ -45,7 +58,7 @@ public class FournirListeQuestionnaireServiceTest {
 
     @Test
     public void testEmptyValueException() {
-        var service = new ChargementEmptyValueMockImpl();
+        service = new ChargementEmptyValueMockImpl();
         assertThrows(EmptyValueException.class, () ->
                 service.fournirListeQuestionnaires("questionnaireEmptyValue.csv")
         );
@@ -53,7 +66,7 @@ public class FournirListeQuestionnaireServiceTest {
 
     @Test
     public void testInvalidIdException() {
-        var service = new ChargementInvalidIdMockImpl();
+        service = new ChargementInvalidIdMockImpl();
         assertThrows(InvalidIdException.class, () ->
                 service.fournirListeQuestionnaires("questionnaireInvalidId.csv")
         );
@@ -61,7 +74,7 @@ public class FournirListeQuestionnaireServiceTest {
 
     @Test
     public void testInvalidLangException() {
-        var service = new ChargementInvalidLangMockImpl();
+        service = new ChargementInvalidLangMockImpl();
         assertThrows(InvalidLangException.class, () ->
                 service.fournirListeQuestionnaires("questionnaireInvalidLang.csv")
         );
@@ -69,7 +82,7 @@ public class FournirListeQuestionnaireServiceTest {
 
     @Test
     public void testInvalidDifficultyException() {
-        var service = new ChargementInvalidDifficultyMockImpl();
+        service = new ChargementInvalidDifficultyMockImpl();
         assertThrows(InvalidDifficultyException.class, () ->
                 service.fournirListeQuestionnaires("questionnaireInvalidDifficulty.csv")
         );
