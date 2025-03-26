@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,8 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 
             String[] ligne;
             while ((ligne = reader.readNext()) != null) {
+                System.out.println(Arrays.toString(ligne));
+                System.out.println(ligne.length);
                 if (ligne.length != 8) {
                     throw new InvalidFileException("Format CSV invalide : nombre de colonnes insuffisant.");
                 }

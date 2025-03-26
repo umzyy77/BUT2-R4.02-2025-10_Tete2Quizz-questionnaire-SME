@@ -1,10 +1,12 @@
 package org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.services;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.entities.dto.QuestionDTO;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.entities.dto.QuestionnaireDTO;
+import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.services.impl.QuestionnaireServiceImpl;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.services.interfaces.QuestionnaireService;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.enums.DifficulteEnum;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.enums.LangEnum;
@@ -20,8 +22,8 @@ public class FournirListeQuestionnaireServiceTest {
 
     @Test
     public void testChargementValide() throws Exception {
-        service = new ChargementCSVValideMockImpl();
-        List<QuestionnaireDTO> liste = service.fournirListeQuestionnaires("questionnaireQuizz_V1.1.csv");
+        service = new QuestionnaireServiceImpl();
+        List<QuestionnaireDTO> liste = service.fournirListeQuestionnaires("/questionnaireQuizz_V1.1.csv");
 
         assertNotNull(liste);
         assertEquals(1, liste.size());
@@ -42,49 +44,49 @@ public class FournirListeQuestionnaireServiceTest {
 
     @Test
     public void testIOException() {
-        service = new ChargementIOExceptionMockImpl();
+        service = new QuestionnaireServiceImpl();
         assertThrows(IOException.class, () ->
-                service.fournirListeQuestionnaires("questionnaireIOException.csv")
+                service.fournirListeQuestionnaires("/questionnaireIOException.csv")
         );
     }
 
     @Test
     public void testInvalidFileException() {
-        service = new ChargementInvalidFileMockImpl();
+        service = new QuestionnaireServiceImpl();
         assertThrows(InvalidFileException.class, () ->
-                service.fournirListeQuestionnaires("questionnaireInvalidFile.csv")
+                service.fournirListeQuestionnaires("/questionnaireInvalidFile.csv")
         );
     }
 
     @Test
     public void testEmptyValueException() {
-        service = new ChargementEmptyValueMockImpl();
+        service = new QuestionnaireServiceImpl();
         assertThrows(EmptyValueException.class, () ->
-                service.fournirListeQuestionnaires("questionnaireEmptyValue.csv")
+                service.fournirListeQuestionnaires("/questionnaireEmptyValue.csv")
         );
     }
 
     @Test
     public void testInvalidIdException() {
-        service = new ChargementInvalidIdMockImpl();
+        service = new QuestionnaireServiceImpl();
         assertThrows(InvalidIdException.class, () ->
-                service.fournirListeQuestionnaires("questionnaireInvalidId.csv")
+                service.fournirListeQuestionnaires("/questionnaireInvalidId.csv")
         );
     }
 
     @Test
     public void testInvalidLangException() {
-        service = new ChargementInvalidLangMockImpl();
+        service = new QuestionnaireServiceImpl();
         assertThrows(InvalidLangException.class, () ->
-                service.fournirListeQuestionnaires("questionnaireInvalidLang.csv")
+                service.fournirListeQuestionnaires("/questionnaireInvalidLang.csv")
         );
     }
 
     @Test
     public void testInvalidDifficultyException() {
-        service = new ChargementInvalidDifficultyMockImpl();
+        service = new QuestionnaireServiceImpl();
         assertThrows(InvalidDifficultyException.class, () ->
-                service.fournirListeQuestionnaires("questionnaireInvalidDifficulty.csv")
+                service.fournirListeQuestionnaires("/questionnaireInvalidDifficulty.csv")
         );
     }
 }
