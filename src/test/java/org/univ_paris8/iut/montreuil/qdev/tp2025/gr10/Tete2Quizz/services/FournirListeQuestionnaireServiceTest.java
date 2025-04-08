@@ -1,6 +1,5 @@
 package org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.services;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,7 +10,6 @@ import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.services.interf
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.enums.DifficulteEnum;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.enums.LangEnum;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.exceptions.load.*;
-import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.services.mock.*;
 
 import java.io.IOException;
 import java.util.List;
