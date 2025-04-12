@@ -12,8 +12,8 @@ import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.enums.Dif
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.enums.LangEnum;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr10.Tete2Quizz.utils.exceptions.load.*;
 
+import java.io.*;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
@@ -34,14 +34,14 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 
     private void chargerFichier(String file) throws IOException, InvalidFileException, EmptyValueException, InvalidIdException, InvalidLangException, InvalidDifficultyException {
         try {
-            URL resourceUrl = getClass().getResource(file);
-            if (resourceUrl == null) {
+            InputStream inputStream = getClass().getResourceAsStream(file);
+            if (inputStream == null) {
                 throw new FileNotFoundException("Impossible de trouver la ressource : " + file);
             }
 
             CSVParser parser = new CSVParserBuilder().withSeparator(';').build();
+            CSVReader reader = new CSVReaderBuilder(new InputStreamReader(inputStream)).withCSVParser(parser).build();
 
-            CSVReader reader = new CSVReaderBuilder(new FileReader(resourceUrl.getFile())).withCSVParser(parser).build();
             questionnaires = new HashMap<>();
 
             String[] ligne;
